@@ -4,6 +4,8 @@ from django.urls import reverse
 
 
 class UserCRUDTest(TestCase):
+    fixtures = ['users.json']
+
     def setUp(self):
         self.client = Client()
 
@@ -21,20 +23,18 @@ class UserCRUDTest(TestCase):
         self.assertTrue(User.objects.filter(username='testuser').exists())
 
     def test_get_user_list(self):
-        user1 = User.objects.create_user(username='user1', password='12345')
-        user2 = User.objects.create_user(username='user2', password='12345')
         response = self.client.get(reverse('users'))
         users = response.context['object_list']
 
         self.assertEqual(response.status_code, 200)
         self.assertEqual(len(users), 2)
-        self.assertIn(user1, users)
-        self.assertIn(user2, users)
+
+        self.assertTrue(User.objects.filter(username='user1').exists())
+        self.assertTrue(User.objects.filter(username='user2').exists())
 
     def test_update_user(self):
-        user = User.objects.create_user(username='oldname', password='12345')
-
-        self.client.login(username='oldname', password='12345')
+        user = User.objects.get(username='user1')
+        self.client.force_login(user)
 
         response = self.client.post(
             reverse('user_update', kwargs={'pk': user.id}), {'username': 'newname'}
@@ -47,21 +47,18 @@ class UserCRUDTest(TestCase):
         self.assertEqual(user.username, 'newname')
 
     def test_user_cannot_update_another_user(self):
-        user1 = User.objects.create_user(username='user1', password='12345')
-        User.objects.create_user(username='user2', password='12345')
+        user1 = User.objects.get(username='user1')
+        user2 = User.objects.get(username='user2')
 
-        self.client.login(username='user2', password='12345')
-
-        self.client.post(
-            reverse('user_update', kwargs={'pk': user1.id}), {'username': 'hacked_name'}
-        )
+        self.client.force_login(user2)
+        self.client.post(reverse('user_update', kwargs={'pk': user1.pk}), {'username': 'new_name'})
 
         user1.refresh_from_db()
 
-        self.assertNotEqual(user1.username, 'hacked_name')
+        self.assertEqual(user1.username, 'user1')
 
     def test_delete_user(self):
-        user = User.objects.create_user(username='remove', password='123456')
+        user = User.objects.get(username='user1')
         response = self.client.post(reverse('user_delete', kwargs={'pk': user.id}))
 
         self.assertEqual(response.status_code, 302)
