@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+  <h1>{% trans 'Users' %}</h1>
+  <table class="table table-striped mt-4">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>{% trans 'Username' %}</th>
+        <th>{% trans 'Full Name' %}</th>
+        <th>{% trans 'Creation Date' %}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user in user_list %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.first_name }} {{ user.last_name }}</td>
+          <td>{{ user.date_joined|date:"SHORT_DATETIME_FORMAT" }}</td>
+          <td>
+            <a href="{% url 'user_update' pk=user.id %}" class="d-block">{% trans 'Change' %}</a>
+            <a href="{% url 'user_delete' pk=user.id %}" class="d-block">{% trans 'Delete' %}</a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

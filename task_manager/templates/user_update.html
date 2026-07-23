@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% block content %}
+  <div class="col-md-9 col-lg-4 mx-auto">
+    <h1 class="mb-4 mt-5 text-center">{% trans 'Edit user' %}</h1>
+    <form action="{% url 'user_update' pk=user.id %}"
+          method="post"
+          class="form">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+      <button class="btn btn-primary w-100">{% trans 'Save' %}</button>
+    </form>
+  </div>
+{% endblock %}
