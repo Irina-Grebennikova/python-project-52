@@ -1,0 +1,55 @@
+{% load i18n %}
+{% load django_bootstrap5 %}
+{% bootstrap_css %} {% bootstrap_javascript %} {% bootstrap_messages %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block title %}
+        {% translate 'Task Manager' %}
+      {% endblock %}
+    </title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
+          <div class="col-md-3 mb-2 mb-md-0 d-flex align-items-center gap-3 flex-column-reverse flex-md-row">
+            <a href="{% url 'index' %}"
+               class="fs-4 text-dark text-decoration-none text-nowrap">{% translate 'Task Manager' %}</a>
+            <form action="{% url 'set_language' %}"
+                  method="post"
+                  class="form m-0 d-flex">
+              {% csrf_token %}
+              {% get_current_language as LANGUAGE_CODE %}
+              {% get_available_languages as LANGUAGES %}
+              {% get_language_info_list for LANGUAGES as languages %}
+              {% for language in languages %}
+                <input type="radio"
+                       class="btn-check"
+                       name="language"
+                       id="{{ language.code }}"
+                       value="{{ language.code }}"
+                       {% if language.code == LANGUAGE_CODE %}checked{% endif %}
+                       onchange="this.form.submit()">
+                <label class="btn text-uppercase" for="{{ language.code }}">{{ language.code }}</label>
+              {% endfor %}
+            </form>
+          </div>
+          <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+            <li>
+              <a href="#" class="nav-link px-2 link-dark">{% translate 'Users' %}</a>
+            </li>
+          </ul>
+          <div class="col-md-3 text-end d-flex align-items-center justify-content-end">
+            <button type="button" class="btn btn-outline-primary me-2">{% translate 'Login' %}</button>
+            <button type="button" class="btn btn-primary">{% translate 'Sign-up' %}</button>
+          </div>
+        </header>
+      </div>
+      {% block content %}{% endblock %}
+    </main>
+  </body>
+</html>
