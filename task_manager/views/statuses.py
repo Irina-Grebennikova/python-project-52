@@ -4,6 +4,8 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy, pgettext_lazy
 from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
+from core.mixins import ProtectedDeleteMixin
+
 from ..models import Status
 
 
@@ -16,7 +18,10 @@ class StatusListView(LoginRequiredMixin, ListView):
 class StatusCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Status
     fields = ('name',)
-    template_name = 'status_create.html'
+    template_name = 'create_entity.html'
+    extra_context = {
+        'entity': gettext_lazy('status'),
+    }
     login_url = reverse_lazy('login')
     success_url = reverse_lazy('statuses')
     success_message = gettext_lazy('Status successfully created')
@@ -34,7 +39,7 @@ class StatusUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     success_message = gettext_lazy('Status successfully modified')
 
 
-class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
+class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, ProtectedDeleteMixin, DeleteView):
     model = Status
     template_name = 'deletion_confirmation.html'
     extra_context = {
@@ -44,3 +49,4 @@ class StatusDeleteView(LoginRequiredMixin, SuccessMessageMixin, DeleteView):
     login_url = reverse_lazy('login')
     success_url = reverse_lazy('statuses')
     success_message = gettext_lazy('Status successfully deleted')
+    protected_message = gettext_lazy('The status cannot be deleted because it is in use')

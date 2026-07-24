@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+  <h1>{% trans 'View task' %}</h1>
+  <div class="card mt-4">
+    <h3 class="card-header">{{ task.name }}</h3>
+    <div class="card-body">
+      <p class="card-text">{{ task.description }}</p>
+      <table class="table table-borderless border-top">
+        <tbody>
+          <tr>
+            <th scope="row">{% trans "Author" %}</th>
+            <td>{{ task.author.username }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% trans "Assignee" %}</th>
+            <td>{{ task.assignee.username }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% trans "Status" %}</th>
+            <td>{{ task.status.name }}</td>
+          </tr>
+          <tr>
+            <th scope="row">{% trans "Creation Date" %}</th>
+            <td>{{ task.created_at|date:"SHORT_DATETIME_FORMAT" }}</td>
+          </tr>
+          <tr>
+            <td class="fw-bold">{% trans "Labels:" %}</td>
+          </tr>
+          <tr>
+            <td>
+              <a href="{% url 'task_update' pk=task.id %}" class="d-block">{% trans 'Change' %}</a>
+              <a href="{% url 'task_delete' pk=task.id %}" class="d-block">{% trans 'Delete' %}</a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+{% endblock %}

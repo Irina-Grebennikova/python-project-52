@@ -11,6 +11,8 @@ from django.views import View
 from django.views.generic import ListView, UpdateView
 from django.views.generic.edit import CreateView, DeleteView
 
+from core.mixins import ProtectedDeleteMixin
+
 from .forms import RegisterForm
 
 
@@ -19,7 +21,7 @@ class UserListView(ListView):
     template_name = 'users.html'
 
 
-class UserDeleteView(SuccessMessageMixin, DeleteView):
+class UserDeleteView(SuccessMessageMixin, ProtectedDeleteMixin, DeleteView):
     model = User
     template_name = 'deletion_confirmation.html'
     extra_context = {
@@ -28,6 +30,7 @@ class UserDeleteView(SuccessMessageMixin, DeleteView):
     }
     success_url = reverse_lazy('users')
     success_message = gettext_lazy('User successfully deleted')
+    protected_message = gettext_lazy('The user has related tasks')
 
 
 class LoginView(SuccessMessageMixin, LoginView):

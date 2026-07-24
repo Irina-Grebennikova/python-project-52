@@ -15,7 +15,7 @@
   </head>
   <body>
     {% bootstrap_messages %}
-    <main>
+    <main class="pb-3">
       <div class="container">
         <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
           <div class="col-md-3 mb-2 mb-md-0 d-flex align-items-center gap-3 flex-column-reverse flex-md-row">
@@ -47,6 +47,9 @@
             {% if user.is_authenticated %}
               <li>
                 <a href="{% url 'statuses' %}" class="nav-link px-2 link-dark">{% translate 'Statuses' %}</a>
+              </li>
+              <li>
+                <a href="{% url 'tasks' %}" class="nav-link px-2 link-dark">{% translate 'Tasks' %}</a>
               </li>
             {% endif %}
           </ul>
