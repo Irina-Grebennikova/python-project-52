@@ -5,17 +5,13 @@ from django.contrib.auth.models import User
 from django.contrib.auth.views import LoginView
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import redirect
-from django.urls import reverse, reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy
 from django.views import View
-from django.views.generic import ListView, TemplateView, UpdateView
+from django.views.generic import ListView, UpdateView
 from django.views.generic.edit import CreateView, DeleteView
 
 from .forms import RegisterForm
-
-
-class IndexView(TemplateView):
-    template_name = 'index.html'
 
 
 class UserListView(ListView):
@@ -25,17 +21,19 @@ class UserListView(ListView):
 
 class UserDeleteView(SuccessMessageMixin, DeleteView):
     model = User
-    template_name = 'user_delete.html'
+    template_name = 'deletion_confirmation.html'
+    extra_context = {
+        'entity': gettext_lazy('user'),
+        'cancel_url': reverse_lazy('users'),
+    }
     success_url = reverse_lazy('users')
     success_message = gettext_lazy('User successfully deleted')
 
 
 class LoginView(SuccessMessageMixin, LoginView):
     template_name = 'login.html'
+    next_page = 'index'
     success_message = gettext_lazy('You are logged in')
-
-    def get_success_url(self):
-        return reverse('index')
 
 
 class LogoutView(View):
@@ -54,7 +52,10 @@ class RegisterView(SuccessMessageMixin, CreateView):
 
 class UserUpdateView(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = User
-    template_name = 'user_update.html'
+    template_name = 'update_entity.html'
+    extra_context = {
+        'entity': gettext_lazy('user'),
+    }
     fields = ('first_name', 'last_name', 'username')
     success_url = reverse_lazy('users')
     success_message = gettext_lazy('User successfully modified')

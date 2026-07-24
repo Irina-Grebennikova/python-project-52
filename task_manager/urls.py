@@ -18,16 +18,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from task_manager import views
+from .views.index_view import IndexView
+from .views.statuses import StatusCreateView, StatusDeleteView, StatusListView, StatusUpdateView
 
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
-    path('users/', views.UserListView.as_view(), name='users'),
-    path('users/create/', views.RegisterView.as_view(), name='register'),
-    path('users/<int:pk>/update/', views.UserUpdateView.as_view(), name='user_update'),
-    path('users/<int:pk>/delete/', views.UserDeleteView.as_view(), name='user_delete'),
-    path('login/', views.LoginView.as_view(), name='login'),
-    path('logout/', views.LogoutView.as_view(), name='logout'),
+    path('', IndexView.as_view(), name='index'),
+    path('', include('users.urls')),
     path('admin/', admin.site.urls),
     path('i18n/', include('django.conf.urls.i18n')),
+    path('statuses/', StatusListView.as_view(), name='statuses'),
+    path('statuses/create/', StatusCreateView.as_view(), name='status_create'),
+    path('statuses/<int:pk>/update/', StatusUpdateView.as_view(), name='status_update'),
+    path('statuses/<int:pk>/delete/', StatusDeleteView.as_view(), name='status_delete'),
 ]

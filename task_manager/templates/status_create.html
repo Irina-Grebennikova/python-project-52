@@ -3,11 +3,11 @@
 {% load django_bootstrap5 %}
 {% block content %}
   <div class="col-md-9 col-lg-4 mx-auto">
-    <h1 class="mb-4 mt-5 text-center">{% trans 'Login' %}</h1>
-    <form action="{% url 'login' %}" method="post" class="form">
+    <h1 class="mb-4 mt-5 text-center">{% trans 'Create status' %}</h1>
+    <form action="{% url 'status_create' %}" method="post" class="form">
       {% csrf_token %}
       {% bootstrap_form form %}
-      <button class="btn btn-primary w-100">{% trans 'Log in' %}</button>
+      <button class="btn btn-primary w-100">{% trans 'Create' %}</button>
     </form>
   </div>
 {% endblock %}

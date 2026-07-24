@@ -22,4 +22,4 @@ lint-fix:
 		$(MAKE) lint ARGS=--fix
 
 test:
-		$(MANAGE) test task_manager
+		$(MANAGE) test

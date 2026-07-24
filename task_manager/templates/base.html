@@ -44,6 +44,11 @@
             <li>
               <a href="{% url 'users' %}" class="nav-link px-2 link-dark">{% translate 'Users' %}</a>
             </li>
+            {% if user.is_authenticated %}
+              <li>
+                <a href="{% url 'statuses' %}" class="nav-link px-2 link-dark">{% translate 'Statuses' %}</a>
+              </li>
+            {% endif %}
           </ul>
           <div class="col-md-3 text-end d-flex align-items-center justify-content-end">
             {% if request.user.is_authenticated %}
