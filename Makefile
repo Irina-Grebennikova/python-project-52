@@ -3,6 +3,9 @@ MANAGE := uv run python manage.py
 install:
 		uv sync
 
+run:
+		$(MANAGE) runserver
+
 render-start:
 		gunicorn task_manager.wsgi
 

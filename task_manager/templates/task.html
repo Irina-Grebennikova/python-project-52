@@ -24,9 +24,18 @@
             <th scope="row">{% trans "Creation Date" %}</th>
             <td>{{ task.created_at|date:"SHORT_DATETIME_FORMAT" }}</td>
           </tr>
-          <tr>
-            <td class="fw-bold">{% trans "Labels:" %}</td>
-          </tr>
+          {% if task.labels.all %}
+            <tr>
+              <td>
+                <p class="fw-bold">{% trans "Labels:" %}</p>
+                <ul>
+                  {% for label in task.labels.all %}
+                    <li>{{ label.name }}</li>
+                  {% endfor %}
+                </ul>
+              </td>
+            </tr>
+          {% endif %}
           <tr>
             <td>
               <a href="{% url 'task_update' pk=task.id %}" class="d-block">{% trans 'Change' %}</a>

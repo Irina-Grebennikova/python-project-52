@@ -28,6 +28,9 @@ class TaskListView(LoginRequiredMixin, ListView):
             if data['assignee']:
                 qs = qs.filter(assignee=data['assignee'])
 
+            if data['label']:
+                qs = qs.filter(labels=data['label'])
+
             if data['own_tasks']:
                 qs = qs.filter(author=self.request.user)
 
@@ -47,7 +50,7 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
 
 class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = Task
-    fields = ('name', 'description', 'status', 'assignee')
+    fields = ('name', 'description', 'status', 'assignee', 'labels')
     template_name = 'create_entity.html'
     extra_context = {
         'entity': pgettext_lazy('create', 'task'),
@@ -67,7 +70,7 @@ class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     extra_context = {
         'entity': pgettext_lazy('edit', 'task'),
     }
-    fields = ('name', 'description', 'status', 'assignee')
+    fields = ('name', 'description', 'status', 'assignee', 'labels')
     login_url = reverse_lazy('login')
     success_url = reverse_lazy('tasks')
     success_message = gettext_lazy('Task successfully modified')

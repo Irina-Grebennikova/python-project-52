@@ -19,6 +19,12 @@ from django.contrib import admin
 from django.urls import include, path
 
 from .views.index_view import IndexView
+from .views.labels import (
+    LabelCreateView,
+    LabelDeleteView,
+    LabelListView,
+    LabelUpdateView,
+)
 from .views.statuses import (
     StatusCreateView,
     StatusDeleteView,
@@ -47,4 +53,8 @@ urlpatterns = [
     path('statuses/create/', StatusCreateView.as_view(), name='status_create'),
     path('statuses/<int:pk>/update/', StatusUpdateView.as_view(), name='status_update'),
     path('statuses/<int:pk>/delete/', StatusDeleteView.as_view(), name='status_delete'),
+    path('labels/', LabelListView.as_view(), name='labels'),
+    path('labels/create/', LabelCreateView.as_view(), name='label_create'),
+    path('labels/<int:pk>/update/', LabelUpdateView.as_view(), name='label_update'),
+    path('labels/<int:pk>/delete/', LabelDeleteView.as_view(), name='label_delete'),
 ]

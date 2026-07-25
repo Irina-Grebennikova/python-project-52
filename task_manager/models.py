@@ -11,6 +11,14 @@ class Status(models.Model):
         return self.name
 
 
+class Label(models.Model):
+    name = models.CharField(gettext_lazy('Name'), max_length=100, unique=True, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.name
+
+
 class Task(models.Model):
     name = models.CharField(gettext_lazy('Name'), max_length=100, unique=True)
     description = models.TextField(gettext_lazy('Description'), null=True, blank=True)
@@ -31,7 +39,15 @@ class Task(models.Model):
         related_name='created_tasks',
         on_delete=models.PROTECT,
     )
+    labels = models.ManyToManyField(
+        Label, verbose_name=gettext_lazy('Labels'), through='LabelTask', blank=True
+    )
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.name
+
+
+class LabelTask(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE)
+    label = models.ForeignKey(Label, on_delete=models.PROTECT)
