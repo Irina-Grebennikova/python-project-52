@@ -4,7 +4,15 @@
     "pk": 1,
     "fields": {
       "name": "to do",
-      "created_at": "2026-07-24T19:48:29.538Z"
+      "created_at": "2026-07-24T10:00:00Z"
+    }
+  },
+  {
+    "model": "task_manager.status",
+    "pk": 2,
+    "fields": {
+      "name": "Done",
+      "created_at": "2026-07-24T11:00:00Z"
     }
   }
 ]

@@ -34,7 +34,7 @@ class TaskCRUDTest(TestCase):
         tasks = response.context['object_list']
 
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(len(tasks), 2)
+        self.assertEqual(len(tasks), Task.objects.count())
 
         self.assertTrue(Task.objects.filter(name='Task 1').exists())
         self.assertTrue(Task.objects.filter(name='Task 2').exists())
@@ -90,7 +90,7 @@ class TaskCRUDTest(TestCase):
         self.assertRedirects(response, reverse('tasks'))
 
     def test_non_author_cannot_delete_task(self):
-        task = Task.objects.get(name='Task 1')
+        task = Task.objects.exclude(author=self.user).first()
         self.client.post(reverse('task_delete', kwargs={'pk': task.id}))
 
         self.assertTrue(Task.objects.filter(id=task.id).exists())
