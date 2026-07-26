@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-07-25 10:24+0000\n"
+"POT-Creation-Date: 2026-07-26 19:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -57,7 +57,7 @@ msgstr "Описание"
 msgid "Author"
 msgstr "Автор"
 
-#: task_manager/models.py:42 task_manager/templates/base.html:52
+#: task_manager/models.py:43 task_manager/templates/base.html:52
 #: task_manager/templates/labeles.html:4
 msgid "Labels"
 msgstr "Метки"
@@ -109,11 +109,8 @@ msgid "Are you sure you want to delete the %(entity)s \"%(object)s\"?"
 msgstr "Вы уверены, что хотите удалить %(entity)s \"%(object)s\"?"
 
 #: task_manager/templates/deletion_confirmation.html:11
-#: task_manager/templates/labeles.html:22
-#: task_manager/templates/statuses.html:22 task_manager/templates/task.html:40
-#: task_manager/templates/tasks.html:41 users/templates/users.html:24
-msgid "Delete"
-msgstr "Удалить"
+msgid "Yes, delete"
+msgstr "Да, удалить"
 
 #: task_manager/templates/deletion_confirmation.html:12
 msgid "Cancel"
@@ -135,10 +132,16 @@ msgid "Creation Date"
 msgstr "Дата создания"
 
 #: task_manager/templates/labeles.html:21
-#: task_manager/templates/statuses.html:21 task_manager/templates/task.html:39
+#: task_manager/templates/statuses.html:21 task_manager/templates/task.html:41
 #: task_manager/templates/tasks.html:40 users/templates/users.html:23
 msgid "Change"
 msgstr "Изменить"
+
+#: task_manager/templates/labeles.html:22
+#: task_manager/templates/statuses.html:22 task_manager/templates/task.html:42
+#: task_manager/templates/tasks.html:41 users/templates/users.html:24
+msgid "Delete"
+msgstr "Удалить"
 
 #: task_manager/templates/statuses.html:5
 msgid "Create status"
@@ -148,7 +151,7 @@ msgstr "Создать статус"
 msgid "View task"
 msgstr "Просмотр задачи"
 
-#: task_manager/templates/task.html:29
+#: task_manager/templates/task.html:30
 msgid "Labels:"
 msgstr "Метки:"
 
@@ -170,8 +173,8 @@ msgid "Edit %(entity)s"
 msgstr "Редактирование %(entity)s"
 
 #: task_manager/templates/update_entity.html:10
-msgid "Save"
-msgstr "Сохранить"
+msgid "Edit"
+msgstr "Изменить"
 
 #: task_manager/views/labels.py:23
 msgctxt "create"

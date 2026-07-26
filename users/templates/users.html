@@ -17,7 +17,7 @@
           <tr>
             <td>{{ user.id }}</td>
             <td>{{ user.username }}</td>
-            <td>{{ user.first_name }} {{ user.last_name }}</td>
+            <td>{{ user.get_full_name }}</td>
             <td>{{ user.date_joined|date:"SHORT_DATETIME_FORMAT" }}</td>
             <td>
               <a href="{% url 'user_update' pk=user.id %}" class="d-block">{% trans 'Change' %}</a>

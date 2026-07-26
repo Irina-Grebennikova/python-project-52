@@ -13,7 +13,7 @@ from django.views.generic.edit import CreateView, DeleteView
 
 from core.mixins import ProtectedDeleteMixin
 
-from .forms import RegisterForm
+from .forms import RegisterForm, UserUpdateForm
 
 
 class UserListView(ListView):
@@ -55,11 +55,11 @@ class RegisterView(SuccessMessageMixin, CreateView):
 
 class UserUpdateView(UserPassesTestMixin, SuccessMessageMixin, UpdateView):
     model = User
+    form_class = UserUpdateForm
     template_name = 'update_entity.html'
     extra_context = {
         'entity': gettext_lazy('user'),
     }
-    fields = ('first_name', 'last_name', 'username')
     success_url = reverse_lazy('users')
     success_message = gettext_lazy('User successfully modified')
 

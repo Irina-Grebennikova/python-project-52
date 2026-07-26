@@ -10,6 +10,17 @@ from ..forms import TaskFilterForm
 from ..models import Task
 
 
+class AssigneeLabelMixin:
+    def get_form(self, form_class=None):
+        form = super().get_form(form_class)
+
+        form.fields['assignee'].label_from_instance = lambda user: (
+            user.get_full_name() or user.username
+        )
+
+        return form
+
+
 class TaskListView(LoginRequiredMixin, ListView):
     model = Task
     template_name = 'tasks.html'
@@ -48,7 +59,7 @@ class TaskDetailView(LoginRequiredMixin, DetailView):
     login_url = reverse_lazy('login')
 
 
-class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
+class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, AssigneeLabelMixin, CreateView):
     model = Task
     fields = ('name', 'description', 'status', 'assignee', 'labels')
     template_name = 'create_entity.html'
@@ -64,7 +75,7 @@ class TaskCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
         return super().form_valid(form)
 
 
-class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
+class TaskUpdateView(LoginRequiredMixin, SuccessMessageMixin, AssigneeLabelMixin, UpdateView):
     model = Task
     template_name = 'update_entity.html'
     extra_context = {

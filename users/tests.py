@@ -37,7 +37,12 @@ class UserCRUDTest(TestCase):
         self.client.force_login(user)
 
         response = self.client.post(
-            reverse('user_update', kwargs={'pk': user.id}), {'username': 'newname'}
+            reverse('user_update', kwargs={'pk': user.id}),
+            {
+                'username': 'newname',
+                'new_password1': 'newpassword',
+                'new_password2': 'newpassword',
+            },
         )
 
         self.assertEqual(response.status_code, 302)
