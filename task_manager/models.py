@@ -21,7 +21,7 @@ class Label(models.Model):
 
 class Task(models.Model):
     name = models.CharField(gettext_lazy('Name'), max_length=100, unique=True)
-    description = models.TextField(gettext_lazy('Description'), null=True, blank=True)
+    description = models.TextField(gettext_lazy('Description'), blank=True)
     status = models.ForeignKey(
         Status, verbose_name=gettext_lazy('Status'), on_delete=models.PROTECT
     )
