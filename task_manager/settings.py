@@ -29,7 +29,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = ['webserver', '127.0.0.1', 'task-manager-i0du.onrender.com']
+ALLOWED_HOSTS = ['webserver', '127.0.0.1', 'localhost', 'task-manager-i0du.onrender.com']
 
 
 # Application definition

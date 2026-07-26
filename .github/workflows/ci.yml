@@ -11,18 +11,23 @@ jobs:
       SECRET_KEY: 'test-secret-key'
     steps:
       - uses: actions/checkout@v6
+
       - name: Set up Python
         uses: actions/setup-python@v6
         with:
           python-version: '3.13'
+
         # make depends on uv
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+
       - name: Install dependencies
-        run: |
-          pip install uv
-          make install
+        run: make install
+
       - name: Run linter
         run: |
           make lint
+
       - name: Run tests
         run: |
           make test
