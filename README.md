@@ -6,6 +6,7 @@
 
 [![Task Manager CI](https://github.com/Irina-Grebennikova/python-project-52/actions/workflows/ci.yml/badge.svg)](https://github.com/Irina-Grebennikova/python-project-52/actions/workflows/ci.yml)
 [![Quality gate status](https://sonarcloud.io/api/project_badges/measure?project=Irina-Grebennikova_python-project-52&metric=alert_status&token=e29fe314b416b2cf5c6080bb977045b9f8ed979b)](https://sonarcloud.io/summary/new_code?id=Irina-Grebennikova_python-project-52)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Irina-Grebennikova_python-project-52&metric=coverage&token=e29fe314b416b2cf5c6080bb977045b9f8ed979b)](https://sonarcloud.io/summary/new_code?id=Irina-Grebennikova_python-project-52)
 
 ### About
 

@@ -26,3 +26,7 @@ lint-fix:
 
 test:
 		$(MANAGE) test
+
+test-coverage:
+	uv run coverage run manage.py test
+	uv run coverage xml

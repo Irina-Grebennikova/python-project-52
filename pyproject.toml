@@ -17,6 +17,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "coverage>=7.16.0",
     "djlint>=1.42.2",
     "ruff>=0.15.22",
 ]
