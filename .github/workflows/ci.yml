@@ -31,6 +31,7 @@ jobs:
       - name: Run tests
         run: |
           make test
+
       - name: Run test coverage
         run: |
           make test-coverage
@@ -44,5 +45,5 @@ jobs:
             -Dsonar.projectKey=Irina-Grebennikova_python-project-52
             -Dsonar.organization=girishkaizh
             -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.coverage.exclusions=tests/**
-            -Dsonar.exclusions=tests/**
+            -Dsonar.coverage.exclusions=**/tests/**,**/migrations/**,manage.py,**/asgi.py,**/wsgi.py
+            -Dsonar.exclusions=**/tests/**,**/migrations/**

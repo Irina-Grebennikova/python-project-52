@@ -28,5 +28,7 @@ test:
 		$(MANAGE) test
 
 test-coverage:
-	uv run coverage run manage.py test
-	uv run coverage xml
+		uv run coverage run manage.py test
+		uv run coverage xml
+
+setup: install collectstatic migrate
