@@ -1,6 +1,6 @@
 [
   {
-    "model": "task_manager.status",
+    "model": "statuses.status",
     "pk": 1,
     "fields": {
       "name": "to do",
@@ -8,7 +8,7 @@
     }
   },
   {
-    "model": "task_manager.status",
+    "model": "statuses.status",
     "pk": 2,
     "fields": {
       "name": "Done",

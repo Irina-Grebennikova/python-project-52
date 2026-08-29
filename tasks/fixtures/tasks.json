@@ -1,6 +1,6 @@
 [
   {
-    "model": "task_manager.task",
+    "model": "tasks.task",
     "pk": 1,
     "fields": {
       "name": "Task 1",
@@ -12,7 +12,7 @@
     }
   },
   {
-    "model": "task_manager.task",
+    "model": "tasks.task",
     "pk": 2,
     "fields": {
       "name": "Task 2",
@@ -24,7 +24,7 @@
     }
   },
   {
-    "model": "task_manager.task",
+    "model": "tasks.task",
     "pk": 3,
     "fields": {
       "name": "Task 3",
@@ -36,7 +36,7 @@
     }
   },
   {
-    "model": "task_manager.task",
+    "model": "tasks.task",
     "pk": 4,
     "fields": {
       "name": "Task 4",

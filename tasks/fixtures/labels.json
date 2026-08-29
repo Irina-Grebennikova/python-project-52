@@ -1,6 +1,6 @@
 [
   {
-    "model": "task_manager.label",
+    "model": "labels.label",
     "pk": 1,
     "fields": {
       "name": "Bug",
@@ -8,7 +8,7 @@
     }
   },
   {
-    "model": "task_manager.label",
+    "model": "labels.label",
     "pk": 2,
     "fields": {
       "name": "Feature",

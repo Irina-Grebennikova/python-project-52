@@ -2,7 +2,10 @@ from django.contrib.auth.models import User
 from django.test import Client, TestCase
 from django.urls import reverse
 
-from ..models import Label, Status, Task
+from statuses.models import Status
+from tasks.models import Task
+
+from .models import Label
 
 
 class LabelCRUDTest(TestCase):

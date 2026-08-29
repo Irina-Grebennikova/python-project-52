@@ -6,7 +6,7 @@ from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from core.mixins import ProtectedDeleteMixin
 
-from ..models import Status
+from .models import Status
 
 
 class StatusListView(LoginRequiredMixin, ListView):

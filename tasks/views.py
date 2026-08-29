@@ -6,8 +6,8 @@ from django.urls import reverse_lazy
 from django.utils.translation import gettext, gettext_lazy, pgettext_lazy
 from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
 
-from ..forms import TaskFilterForm
-from ..models import Task
+from .forms import TaskFilterForm
+from .models import Task
 
 
 class AssigneeLabelMixin:
